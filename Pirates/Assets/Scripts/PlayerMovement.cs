@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float jumpForce = 14f;
     [SerializeField]private float moveSpeed =7f;
 
+    private float horizontalInput;
+
     private enum MovementState { idle, running, jumping, falling}
      // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(0,0,0);
         dirX = Input.GetAxisRaw("Horizontal");  
         rb.velocity = new Vector2 (dirX*moveSpeed, rb.velocity.y);
@@ -78,5 +81,10 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
         
+    }
+
+    public bool canAttack()
+    {
+        return horizontalInput == 0 && IsGround();
     }
 }
