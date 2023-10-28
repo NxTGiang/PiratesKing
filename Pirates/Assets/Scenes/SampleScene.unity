@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &155340167
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -468,37 +468,6 @@ MonoBehaviour:
   playerHealthBar: {fileID: 905743136}
   totalHealthBar: {fileID: 1980909275}
   currentHealthBar: {fileID: 1844551494}
---- !u!1 &195446606
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 195446607}
-  m_Layer: 8
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &195446607
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195446606}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.32, y: 0.05, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 905743131}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &244999981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3710491560137630659, guid: 1d26fbf4d2bb9bd4cb2b7b00284a1949, type: 3}
@@ -645,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &255724450
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -844,7 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &336290245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1038,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &369174124
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1512,7 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &535793916
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1825,10 +1794,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.61, y: 0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 519420032}
-  - {fileID: 195446607}
+  - {fileID: 2080907052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &905743132
@@ -1954,8 +1923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57977f2bfd27da64fb86bebc6b5ae962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 2
-  firePoint: {fileID: 195446607}
+  attackCooldown: 1
+  firePoint: {fileID: 2080907052}
   swords:
   - {fileID: 336290239}
   - {fileID: 255724444}
@@ -2474,7 +2443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &1209436980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2773,7 +2742,7 @@ GameObject:
   - component: {fileID: 1282343012}
   m_Layer: 6
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35369,7 +35338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &1680834175
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35592,7 +35561,7 @@ Transform:
   m_GameObject: {fileID: 1899057475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.32, y: 2.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35853,7 +35822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &1972010102
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36047,7 +36016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &1978787824
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36316,7 +36285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63612eb92c7071c4b9510f5b7b960f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!212 &1991481591
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36369,6 +36338,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2080907051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080907052}
+  m_Layer: 5
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080907052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080907051}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.58, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 905743131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3453610598712235016
 PrefabInstance:
   m_ObjectHideFlags: 0
