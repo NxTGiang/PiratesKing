@@ -1857,11 +1857,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05afeac0b09721f45a3219f404d1ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpableGround:
+  moveSpeed: 7
+  jumpForce: 18
+  coyoteTime: 0.25
+  extraJump: 1
+  groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 14
-  moveSpeed: 7
 --- !u!95 &905743134
 Animator:
   serializedVersion: 5

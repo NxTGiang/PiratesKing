@@ -7,18 +7,29 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement Parameters")]
+    [SerializeField] private float moveSpeed = 7f; 
+    [SerializeField] private float jumpForce = 18f;
+
+    [Header("Coyote Time")]
+    [SerializeField] private float coyoteTime;
+    private float coyoteCounter;
+
+    [Header("Multiple Jump")]
+    [SerializeField]private int extraJump;
+    private int jumpCounter;
+
+    [Header("Layers")]
+    [SerializeField] private LayerMask groundLayer;
+
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
 
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField]private float jumpForce = 14f;
-    [SerializeField]private float moveSpeed =7f;
+    
+    
 
     private float horizontalInput;
-
-
-    private enum MovementState { idle, running, jumping, falling}
 
     private void Awake()
     {
@@ -32,27 +43,65 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horizontalInput * moveSpeed, body.velocity.y);
 
+        //flip 
         if(horizontalInput > 0.01f)
             transform.localScale = Vector3.one;
-        else if (horizontalInput < 0.01f)
+        else if (horizontalInput < -0.01f)
             transform.localScale = new Vector3(-1, 1, 1);
 
 
-        if (Input.GetKey(KeyCode.Space) && IsGrounded())
-            Jump();
-
+        //set parameter
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", IsGrounded());
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            Jump();
+
+        if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
+        {
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y/2);
+        }
+
+        body.velocity = new Vector2(horizontalInput * moveSpeed, body.velocity.y);
+
+        if (IsGrounded())
+        {
+            coyoteCounter = coyoteTime;
+            jumpCounter = extraJump;
+        }
+        else
+        {
+            coyoteCounter -= Time.deltaTime;
+        }
     }
 
     private void Jump()
     {
-        
-        body.velocity = new Vector2(body.velocity.x, jumpForce);
-        anim.SetTrigger("jump");
-        
+        if (coyoteCounter <= 0 && jumpCounter <= 0) return;
+        if(IsGrounded())
+        {
+            body.velocity = new Vector2(body.velocity.x, jumpForce);
+            //anim.SetTrigger("jump");
+        }
+        else
+        {
+            if(coyoteCounter > 0)
+                body.velocity = new Vector2(body.velocity.x, jumpForce);
+            else
+            {
+                if(jumpCounter > 0)
+                {
+                    body.velocity = new Vector2(body.velocity.x, jumpForce);
+                    jumpCounter--;
+                }
+                    
+            }
+        }
+        coyoteCounter = 0;
+
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
