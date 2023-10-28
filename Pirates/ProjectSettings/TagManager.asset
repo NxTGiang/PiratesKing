@@ -8,6 +8,7 @@ TagManager:
   - Health
   - Enemy
   - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Ground
   - Enemy
   - Player
-  - 
+  - Wall
   - 
   - 
   - 

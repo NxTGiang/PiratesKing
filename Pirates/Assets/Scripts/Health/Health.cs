@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int numberOfFlashes;
     private SpriteRenderer spriteRenderer;
 
+    private bool invulnerable;
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -24,6 +25,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
+        if(invulnerable) { return; }
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);       
         if (currentHealth > 0)
         {
@@ -36,7 +38,14 @@ public class Health : MonoBehaviour
             {
                 animator.SetBool("grounded", true);
                 animator.SetTrigger("die");
-                GetComponent<PlayerMovement>().enabled = false;
+                if(GetComponent<PlayerMovement>() != null)
+                    GetComponent<PlayerMovement>().enabled = false;
+
+                if(GetComponentInParent<EnemyPatrol>() != null)
+                    GetComponentInParent<EnemyPatrol>().enabled = false;
+
+                if(GetComponent<MeleeEnemy>() != null)
+                    GetComponent<MeleeEnemy>().enabled = false;
                 dead = true;
             }
             
@@ -50,13 +59,15 @@ public class Health : MonoBehaviour
 
     private IEnumerator Invunarablility()
     {
-        Physics2D.IgnoreLayerCollision(8, 7, true);
+        invulnerable = true;
+        Physics2D.IgnoreLayerCollision(10, 11, true);
         for(int i = 0; i < numberOfFlashes; i++)
         {
             spriteRenderer.color = new Color(1, 0, 0, 0.5f);
             yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes));
             spriteRenderer.color = Color.white;
         }
-        Physics2D.IgnoreLayerCollision(8, 7, false);
+        Physics2D.IgnoreLayerCollision(10, 11, false);
+        invulnerable = false;
     }
 }
