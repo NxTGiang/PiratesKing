@@ -44,8 +44,11 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
+        var currentVelocity = body.velocity.y;
+        
+
         //flip 
-        if(horizontalInput > 0.01f)
+        if (horizontalInput > 0.01f)
             transform.localScale = Vector3.one;
         else if (horizontalInput < -0.01f)
             transform.localScale = new Vector3(-1, 1, 1);
@@ -54,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
         //set parameter
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", IsGrounded());
+        if (IsGrounded()) currentVelocity = 0f;
+        if (currentVelocity < 0f)
+            anim.SetBool("falling", true);
+        else
+            anim.SetBool("falling", false);
+
 
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
