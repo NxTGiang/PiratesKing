@@ -113,10 +113,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
 
 
     private bool IsGrounded()
@@ -126,8 +122,8 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public bool canAttack()
-    {
-        return horizontalInput == 0 && IsGrounded();
-    }
+    //public bool canAttack()
+    //{
+    //    return horizontalInput == 0 && IsGrounded();
+    //}
 }

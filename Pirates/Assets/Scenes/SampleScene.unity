@@ -6866,7 +6866,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 4
-  iFrameDuration: 2
+  knockbackDistance: 1
+  stuntime: 0.5
+  iFrameDuration: 1
   numberOfFlashes: 3
 --- !u!114 &905743137
 MonoBehaviour:
@@ -39968,6 +39970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  knockbackDistance: 0
+  stuntime: 0
   iFrameDuration: 0
   numberOfFlashes: 0
 --- !u!95 &1541979588

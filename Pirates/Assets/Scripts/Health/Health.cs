@@ -6,6 +6,9 @@ public class Health : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private float startingHealth;
+    [SerializeField] private float knockbackDistance;
+    [SerializeField] private float stuntime;
+    private List<Behaviour> components = new List<Behaviour>();
     public float currentHealth { get; private set; }
     private Animator animator;
     private bool dead;
@@ -16,8 +19,11 @@ public class Health : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private bool invulnerable;
+
     private void Awake()
     {
+        components.AddRange(GetComponents<PlayerMovement>());
+        components.AddRange(GetComponents<PlayerAttack>());
         currentHealth = startingHealth;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,6 +37,7 @@ public class Health : MonoBehaviour
         {
             animator.SetTrigger("hurt");
             StartCoroutine(Invunarablility());
+            StartCoroutine(StunTimer(stuntime));
         }
         else
         {
@@ -38,17 +45,10 @@ public class Health : MonoBehaviour
             {
                 animator.SetBool("grounded", true);
                 animator.SetTrigger("die");
-                if(GetComponent<PlayerMovement>() != null)
-                    GetComponent<PlayerMovement>().enabled = false;
-
-                if(GetComponentInParent<EnemyPatrol>() != null)
-                    GetComponentInParent<EnemyPatrol>().enabled = false;
-
-                if(GetComponent<MeleeEnemy>() != null)
-                    GetComponent<MeleeEnemy>().enabled = false;
-
-                if (GetComponent<StarAttack>() != null)
-                    GetComponent<StarAttack>().enabled = false;
+                foreach (Behaviour component in components)
+                {
+                    component.enabled = false;
+                }
                 dead = true;
             }
             
@@ -64,13 +64,35 @@ public class Health : MonoBehaviour
     {
         invulnerable = true;
         Physics2D.IgnoreLayerCollision(10, 11, true);
-        for(int i = 0; i < numberOfFlashes; i++)
-        {
-            spriteRenderer.color = new Color(1, 0, 0, 0.5f);
-            yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes));
-            spriteRenderer.color = Color.white;
-        }
+        yield return new WaitForSeconds(iFrameDuration);
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
+    }
+    private IEnumerator StunTimer(float duration)
+    {
+        Vector3 knockbackDirection = -transform.forward;
+        transform.position += knockbackDirection * knockbackDistance;
+        foreach (Behaviour component in components)
+        {
+            component.enabled = false;
+        }
+        yield return new WaitForSeconds(duration);
+        foreach (Behaviour component in components)
+        {
+            component.enabled = true;
+        }
+    }
+    public void Respawn()
+    {
+        AddHealth(startingHealth);
+        animator.ResetTrigger("die");
+        animator.Play("Idle");
+        StartCoroutine(Invunarablility());
+        foreach (Behaviour component in components)
+            component.enabled = true;
+    }
+    public void setAlive()
+    {
+        dead = false;
     }
 }
