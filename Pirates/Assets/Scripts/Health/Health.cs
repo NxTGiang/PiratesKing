@@ -46,6 +46,9 @@ public class Health : MonoBehaviour
 
                 if(GetComponent<MeleeEnemy>() != null)
                     GetComponent<MeleeEnemy>().enabled = false;
+
+                if (GetComponent<StarAttack>() != null)
+                    GetComponent<StarAttack>().enabled = false;
                 dead = true;
             }
             

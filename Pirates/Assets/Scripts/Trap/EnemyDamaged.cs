@@ -12,4 +12,11 @@ public class EnemyDamaged : MonoBehaviour
         if(collision.tag == "Player")
             collision.GetComponent<Health>().TakeDamage(damage);
     }
+
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+    }
+    
 }
