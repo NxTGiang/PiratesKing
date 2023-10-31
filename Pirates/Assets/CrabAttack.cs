@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
-public class MeleeEnemy : MonoBehaviour
+public class CrabAttack : MonoBehaviour
 {
     [Header("Attack parameters")]
     [SerializeField] private float attackCooldown;
@@ -14,7 +13,7 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private float colliderDistance;
     [SerializeField] private BoxCollider2D boxCollider;
 
-    [Header ("Player Layer")]
+    [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
 
@@ -27,13 +26,12 @@ public class MeleeEnemy : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        enemyPatrol = GetComponentInParent<EnemyPatrol>(); 
+        enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         cooldownTimer += Time.deltaTime;
         if (PlayerInsight())
         {
@@ -43,21 +41,20 @@ public class MeleeEnemy : MonoBehaviour
                 anim.SetTrigger("attack");
             }
         }
-        if(enemyPatrol != null)
+        if (enemyPatrol != null)
         {
             enemyPatrol.enabled = !PlayerInsight();
         }
-        
     }
 
     private bool PlayerInsight()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
-            boxCollider.bounds.center - transform.right * range * transform.localScale.x * colliderDistance, 
-            new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z), 
+            boxCollider.bounds.center - transform.right * range * transform.localScale.x * colliderDistance,
+            new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
             0, Vector2.left, 0, playerLayer);
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             playerHealth = hit.transform.GetComponent<Health>();
         }
