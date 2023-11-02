@@ -12,6 +12,8 @@ TagManager:
   - Checkpoint
   - Emerald
   - Diamond
+  - Strength
+  - Speed
   layers:
   - Default
   - TransparentFX

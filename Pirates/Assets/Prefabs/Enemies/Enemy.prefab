@@ -443,11 +443,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c40b2e3888d14fb3d85972d76d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumNumberOfDrops: 3
+  maximumNumberOfDrops: 0
   droppedItemPrefab: {fileID: 8559446981554096401, guid: 1411f563f8e777842acd3f18cb64e0e1, type: 3}
   lootList:
   - {fileID: 11400000, guid: 9d51bd3540eb9034e8964beb88a86e4b, type: 2}
   - {fileID: 11400000, guid: f8405e370bd9d7f42a2723b2bea1fb74, type: 2}
+  - {fileID: 11400000, guid: f8fbf225146b2a645bf09c68788630b7, type: 2}
+  - {fileID: 11400000, guid: 5cc4b544152681b478906372203eb07a, type: 2}
+  - {fileID: 11400000, guid: 4dc217616b80ad94588cc338c5c011b1, type: 2}
 --- !u!114 &4411727590481668364
 MonoBehaviour:
   m_ObjectHideFlags: 0

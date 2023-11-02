@@ -472,6 +472,9 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 9d51bd3540eb9034e8964beb88a86e4b, type: 2}
   - {fileID: 11400000, guid: f8405e370bd9d7f42a2723b2bea1fb74, type: 2}
+  - {fileID: 11400000, guid: f8fbf225146b2a645bf09c68788630b7, type: 2}
+  - {fileID: 11400000, guid: 5cc4b544152681b478906372203eb07a, type: 2}
+  - {fileID: 11400000, guid: 4dc217616b80ad94588cc338c5c011b1, type: 2}
 --- !u!1 &5521102817245976189
 GameObject:
   m_ObjectHideFlags: 0

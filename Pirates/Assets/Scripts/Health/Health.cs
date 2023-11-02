@@ -72,6 +72,7 @@ public class Health : MonoBehaviour
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+        HealthPoint.text = currentHealth.ToString() + "/" + startingHealth.ToString();
     }
 
     private IEnumerator Invunarablility()

@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] swords;
+    private float damage = 2;
     private Animator anim;
     private PlayerMovement playerMovement;
     private float cooldownTimer = Mathf.Infinity;
@@ -40,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
         cooldownTimer = 0;
         
         swords[FindSword()].transform.position = firePoint.position;
-        swords[FindSword()].GetComponent<ProjectTile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        swords[FindSword()].GetComponent<ProjectTile>().SetDirection(Mathf.Sign(transform.localScale.x), damage);
     }
 
     private int FindSword()
@@ -51,6 +52,16 @@ public class PlayerAttack : MonoBehaviour
                 return i;
         }
         return 0;
+    }
+
+    public void addDamage(float duration, float addDamage)
+    {
+        damage += addDamage;
+        duration -= Time.deltaTime;
+        if (duration <= 0)
+        {
+            damage -= addDamage;
+        }
     }
 
 }

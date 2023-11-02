@@ -22,12 +22,27 @@ public class PlayerMovement : MonoBehaviour
     [Header("Layers")]
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Effect")]
+    [SerializeField] private float speedBoostDuration;
+    [SerializeField] private float speedBoosts;
+
+    [Header("Item")]
+    [SerializeField] private float cooldownTimer1;
+    [SerializeField] private float cooldownTimer2;
+    private bool canUseItem1 = true;
+    private bool canUseItem2 = true;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
+    private Health health;
+    private float speedBoostTimer;
+    private bool isSpeedBoostActive = false;
+    private ItemCollector itemCollector;
+    private PlayerAttack playerAttack;
 
-    
-    
+
+
+
 
     private float horizontalInput;
 
@@ -36,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        health = GetComponent<Health>();
+        itemCollector = GetComponent<ItemCollector>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
     // Start is called before the first frame update
 
@@ -66,6 +84,42 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
+        if (Input.GetKeyDown(KeyCode.Alpha1) && canUseItem1 && itemCollector.getNumOfHealth()>0)
+        {
+            itemCollector.showNumberOfItem(1);
+            UseHealthItem();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !isSpeedBoostActive && itemCollector.getNumOfSpeed() > 0)
+        {
+            itemCollector.showNumberOfItem(2);
+            moveSpeed += speedBoosts;
+            isSpeedBoostActive = true;
+            speedBoostTimer = speedBoostDuration;
+        }
+        if (isSpeedBoostActive)
+        {
+            speedBoostTimer -= Time.deltaTime;
+            if (speedBoostTimer <= 0)
+            {
+                moveSpeed -= speedBoosts;
+                isSpeedBoostActive = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && canUseItem2 && itemCollector.getNumOfStrenth() > 0)
+        {
+            itemCollector.showNumberOfItem(3);
+            playerAttack.addDamage(cooldownTimer2, 5);
+            canUseItem2 = false;
+            if (!canUseItem2)
+            {
+                cooldownTimer2 -= Time.deltaTime;
+                if (cooldownTimer2 <= 0)
+                {
+                    canUseItem2 = true;
+                }
+            }
+
+        }
 
         if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
         {
@@ -121,6 +175,23 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider != null;
         
     }
+
+    public void UseHealthItem()
+    {
+        health.AddHealth(5f); 
+        canUseItem1 = false;
+        if (!canUseItem1)
+        {
+            cooldownTimer1 -= Time.deltaTime;
+            if (cooldownTimer1 <= 0)
+            {
+                canUseItem1 = true;
+            }
+        }
+
+    }
+
+
 
     //public bool canAttack()
     //{

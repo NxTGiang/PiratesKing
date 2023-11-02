@@ -39,12 +39,13 @@ public class ProjectTile : MonoBehaviour
         anim.SetTrigger("explode");
 
         if (collision.tag == "Enemy")
-            collision.GetComponent<EnemyHealth>().TakeDamage(2);
+            collision.GetComponent<EnemyHealth>().TakeDamage(damge);
     }
 
-    public void SetDirection(float _direction)
+    public void SetDirection(float _direction, float _damge)
     {
         lifetime = 0;
+        damge = _damge;
         direction = _direction;
         gameObject.SetActive(true);
         hit = false;
