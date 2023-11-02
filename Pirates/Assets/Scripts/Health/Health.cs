@@ -20,6 +20,8 @@ public class Health : MonoBehaviour
 
     private bool invulnerable;
 
+    public LootBag lootBag;
+
     private void Awake()
     {
         components.AddRange(GetComponents<PlayerMovement>());
@@ -27,6 +29,7 @@ public class Health : MonoBehaviour
         currentHealth = startingHealth;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        lootBag = GetComponent<LootBag>();
     }
 
     public void TakeDamage(float _damage)
@@ -45,10 +48,13 @@ public class Health : MonoBehaviour
             {
                 animator.SetBool("grounded", true);
                 animator.SetTrigger("die");
+                Vector3 deathPosition = transform.position;
+                lootBag.InstantiateLoot(deathPosition);
                 foreach (Behaviour component in components)
                 {
                     component.enabled = false;
                 }
+                StartCoroutine(DeactivateAfterDelay(0.5f));
                 dead = true;
             }
             
@@ -94,5 +100,14 @@ public class Health : MonoBehaviour
     public void setAlive()
     {
         dead = false;
+    }
+    public bool isDead()
+    {
+        return dead;
+    }
+    private IEnumerator DeactivateAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3965153352554265442}
   - component: {fileID: 7072998397939024011}
   - component: {fileID: 6051197445493835569}
-  - component: {fileID: 2230396587407300252}
+  - component: {fileID: 4506424089015747099}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -32,8 +32,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5169448922085731802}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7440033, y: -0.5230017, z: 0.024872638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.1, y: -0.15169668, z: -0.060696647}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -174,6 +174,7 @@ MonoBehaviour:
   stuntime: 0.5
   iFrameDuration: 0
   numberOfFlashes: 0
+  lootBag: {fileID: 0}
 --- !u!114 &3965153352554265442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 2
   range: 0.6
-  damage: 1
+  damage: 2
   colliderDistance: 0.7
   boxCollider: {fileID: 3619443109613701205}
   playerLayer:
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581b2c7e5940f1442b5df57e908052b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
 --- !u!50 &6051197445493835569
 Rigidbody2D:
   serializedVersion: 4
@@ -234,7 +235,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2230396587407300252
+--- !u!114 &4506424089015747099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,13 +244,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5169448922085731802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05afeac0b09721f45a3219f404d1ebda, type: 3}
+  m_Script: {fileID: 11500000, guid: 481c40b2e3888d14fb3d85972d76d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  jumpForce: 0
-  coyoteTime: 0
-  extraJump: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  maximumNumberOfDrops: 3
+  droppedItemPrefab: {fileID: 8559446981554096401, guid: 1411f563f8e777842acd3f18cb64e0e1, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 9d51bd3540eb9034e8964beb88a86e4b, type: 2}

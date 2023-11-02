@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Wall
   - Checkpoint
+  - Emerald
   layers:
   - Default
   - TransparentFX

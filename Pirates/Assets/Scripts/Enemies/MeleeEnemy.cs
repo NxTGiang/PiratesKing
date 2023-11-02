@@ -47,6 +47,7 @@ public class MeleeEnemy : MonoBehaviour
         {
             enemyPatrol.enabled = !PlayerInsight();
         }
+         
         
     }
 

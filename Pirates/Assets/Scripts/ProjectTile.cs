@@ -6,6 +6,7 @@ using UnityEngine;
 public class ProjectTile : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float damge;
     private float direction;
     private bool hit;
     private float lifetime;
@@ -38,7 +39,7 @@ public class ProjectTile : MonoBehaviour
         anim.SetTrigger("explode");
 
         if (collision.tag == "Enemy")
-            collision.GetComponent<Health>().TakeDamage(1);
+            collision.GetComponent<Health>().TakeDamage(2);
     }
 
     public void SetDirection(float _direction)
