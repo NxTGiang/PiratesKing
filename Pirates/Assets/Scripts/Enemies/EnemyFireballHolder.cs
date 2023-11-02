@@ -8,6 +8,6 @@ public class EnemyFireballHolder : MonoBehaviour
 
     private void Update()
     {
-        transform.localScale = enemy.localScale;
+        transform.localScale = -enemy.localScale;
     }
 }
