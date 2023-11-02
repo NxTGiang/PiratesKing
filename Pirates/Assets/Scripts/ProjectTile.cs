@@ -39,7 +39,7 @@ public class ProjectTile : MonoBehaviour
         anim.SetTrigger("explode");
 
         if (collision.tag == "Enemy")
-            collision.GetComponent<Health>().TakeDamage(2);
+            collision.GetComponent<EnemyHealth>().TakeDamage(2);
     }
 
     public void SetDirection(float _direction)

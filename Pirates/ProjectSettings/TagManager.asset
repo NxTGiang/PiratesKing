@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Checkpoint
   - Emerald
+  - Diamond
   layers:
   - Default
   - TransparentFX

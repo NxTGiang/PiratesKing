@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private float startingHealth;
     [SerializeField] private float knockbackDistance;
     [SerializeField] private float stuntime;
+    [SerializeField] private GameObject floatingTextPrefab;
     private List<Behaviour> components = new List<Behaviour>();
     public float currentHealth { get; private set; }
     private Animator animator;
@@ -18,21 +18,19 @@ public class Health : MonoBehaviour
     [SerializeField] private float iFrameDuration;
     [SerializeField] private int numberOfFlashes;
     private SpriteRenderer spriteRenderer;
+    [SerializeField] FloatingHealthBar healthBar;
 
     private bool invulnerable;
-    [Header("Support")]
+
     public LootBag lootBag;
-    [SerializeField] Text HealthPoint;
 
     private void Awake()
     {
-        components.AddRange(GetComponents<PlayerMovement>());
-        components.AddRange(GetComponents<PlayerAttack>());
         currentHealth = startingHealth;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         lootBag = GetComponent<LootBag>();
-        HealthPoint.text = currentHealth.ToString() + "/"+ startingHealth.ToString();
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
     }
     public float getStartingHealth()
     {
@@ -41,9 +39,10 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        if(invulnerable) { return; }
+        if (invulnerable) { return; }
+        ShowDamage(_damage.ToString());
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
-        HealthPoint.text = currentHealth.ToString() + "/" + startingHealth.ToString();
+        healthBar.UpdateHealthBar(currentHealth, startingHealth);
         Debug.Log(dead);
         if (currentHealth > 0)
         {
@@ -58,17 +57,13 @@ public class Health : MonoBehaviour
                 animator.SetBool("grounded", true);
                 animator.SetTrigger("die");
                 lootBag.InstantiateLoot(transform.position);
-                foreach (Behaviour component in components)
-                {
-                    component.enabled = false;
-                }
                 StartCoroutine(DeactivateAfterDelay(0.5f));
                 dead = true;
             }
-            
+
         }
     }
-    
+
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
@@ -96,15 +91,6 @@ public class Health : MonoBehaviour
             component.enabled = true;
         }
     }
-    public void Respawn()
-    {
-        AddHealth(startingHealth);
-        animator.ResetTrigger("die");
-        animator.Play("Idle");
-        StartCoroutine(Invunarablility());
-        foreach (Behaviour component in components)
-            component.enabled = true;
-    }
     public void setAlive()
     {
         dead = false;
@@ -117,5 +103,14 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
+    }
+
+    void ShowDamage(string text)
+    {
+        if (floatingTextPrefab)
+        {
+            GameObject prefab = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
+            prefab.GetComponentInChildren<TextMesh>().text = text;
+        }
     }
 }

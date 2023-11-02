@@ -15,14 +15,14 @@ public class ItemCollector : MonoBehaviour
             Destroy(collision.gameObject);
             countCoins+=2;
             Debug.Log("Coin");
-            coinsText.text = "Coins: " + countCoins;
+            coinsText.text = countCoins.ToString();
         }
         if (collision.gameObject.CompareTag("Emerald"))
         {
             Destroy(collision.gameObject);
             countCoins+=5;
             Debug.Log("Emerald");
-            coinsText.text = "Coins: " + countCoins;
+            coinsText.text = countCoins.ToString();
         }
     }
 }
