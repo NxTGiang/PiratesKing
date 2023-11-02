@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414786229756440433}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.61, y: 0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -184,6 +184,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  speedBoostDuration: 5
+  speedBoosts: 5
+  cooldownTimer1: 5
+  cooldownTimer2: 5
 --- !u!95 &8542575678833654507
 Animator:
   serializedVersion: 5
@@ -218,6 +222,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsText: {fileID: 0}
+  healthText: {fileID: 0}
+  speedText: {fileID: 0}
+  strengthText: {fileID: 0}
 --- !u!114 &166543083884088973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,8 +242,8 @@ MonoBehaviour:
   stuntime: 0
   iFrameDuration: 1
   numberOfFlashes: 3
-  enemyComponents: []
   lootBag: {fileID: 0}
+  HealthPoint: {fileID: 0}
 --- !u!114 &1460749772124480995
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -37407,22 +37407,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5564875329627180060, guid: 5166ccee507f4f74cb905a18c1a52ed9, type: 3}
-      propertyPath: speedBoosts
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564875329627180060, guid: 5166ccee507f4f74cb905a18c1a52ed9, type: 3}
-      propertyPath: cooldownTimer1
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564875329627180060, guid: 5166ccee507f4f74cb905a18c1a52ed9, type: 3}
-      propertyPath: cooldownTimer2
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564875329627180060, guid: 5166ccee507f4f74cb905a18c1a52ed9, type: 3}
-      propertyPath: speedBoostDuration
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6266346627186926779, guid: 5166ccee507f4f74cb905a18c1a52ed9, type: 3}
       propertyPath: swords.Array.data[0]
       value: 
