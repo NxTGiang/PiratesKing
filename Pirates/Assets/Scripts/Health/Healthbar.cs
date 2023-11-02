@@ -12,15 +12,10 @@ public class Hearth : MonoBehaviour
     [SerializeField] private Image totalHealthBar;
     [SerializeField] private Image currentHealthBar;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        totalHealthBar.fillAmount = playerHealthBar.currentHealth / 10;
-    }
 
     // Update is called once per frame
     void Update()
     {
-        currentHealthBar.fillAmount = playerHealthBar.currentHealth / 10;
+        currentHealthBar.fillAmount = playerHealthBar.currentHealth / playerHealthBar.getStartingHealth();
     }
 }

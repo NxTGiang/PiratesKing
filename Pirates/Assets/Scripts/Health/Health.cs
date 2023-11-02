@@ -31,11 +31,16 @@ public class Health : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         lootBag = GetComponent<LootBag>();
     }
+    public float getStartingHealth()
+    {
+        return startingHealth;
+    }
 
     public void TakeDamage(float _damage)
     {
         if(invulnerable) { return; }
-        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);       
+        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+        Debug.Log(dead);
         if (currentHealth > 0)
         {
             animator.SetTrigger("hurt");
