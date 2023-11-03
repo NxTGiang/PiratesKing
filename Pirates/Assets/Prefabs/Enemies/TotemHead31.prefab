@@ -470,8 +470,8 @@ GameObject:
   - component: {fileID: 3937163720933166787}
   - component: {fileID: 1244670453843437273}
   - component: {fileID: 5595353580718575566}
-  - component: {fileID: 1559005282655910536}
   - component: {fileID: 1401844729806059845}
+  - component: {fileID: 3397165071309798654}
   m_Layer: 7
   m_Name: Totem
   m_TagString: Enemy
@@ -658,24 +658,6 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &1559005282655910536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4913401876588368683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc33563dece35964897c2718a386a795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 3
-  knockbackDistance: 1
-  stuntime: 0.5
-  iFrameDuration: 0
-  numberOfFlashes: 0
-  lootBag: {fileID: 0}
 --- !u!50 &1401844729806059845
 Rigidbody2D:
   serializedVersion: 4
@@ -703,6 +685,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3397165071309798654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913401876588368683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1bd5763ad74904b9db799a97ac9d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3
+  knockbackDistance: 0
+  stuntime: 0.5
+  floatingTextPrefab: {fileID: 0}
+  iFrameDuration: 0
+  numberOfFlashes: 0
+  healthBar: {fileID: 0}
+  lootBag: {fileID: 0}
 --- !u!1 &5883976999551984037
 GameObject:
   m_ObjectHideFlags: 0
