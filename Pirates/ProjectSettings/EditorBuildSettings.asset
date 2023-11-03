@@ -8,15 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start Screen.unity
     guid: aff155eb43abd5440b2f4c254b2f6980
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: e47946cca0a94c744b36912f28b9c04e
+  - enabled: 1
+    path: Assets/Scenes/Duy'sTest.unity
+    guid: 2ce8483d0c8254b4183e62a3062a23fc
   - enabled: 1
     path: Assets/Scenes/Scene2.unity
     guid: f234c8b9cf465b64e8b975db2322a9a0
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: ca441317491d1184480de356787347c7
