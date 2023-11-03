@@ -13,6 +13,9 @@ public class PlayerAttack : MonoBehaviour
     private float cooldownTimer = Mathf.Infinity;
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] LayerMask enemyLayer;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -29,8 +32,11 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0) && cooldownTimer > attackCooldown /*&& playerMovement.canAttack()*/)
+        if (Input.GetMouseButtonDown(1) && cooldownTimer > attackCooldown /*&& playerMovement.canAttack()*/)
             Attack();
+
+        if (Input.GetMouseButtonDown(0) && cooldownTimer > attackCooldown)
+            MeleeAttack();
 
         cooldownTimer += Time.deltaTime;
     }
@@ -54,6 +60,7 @@ public class PlayerAttack : MonoBehaviour
         return 0;
     }
 
+<<<<<<< Updated upstream
     public void addDamage(float duration, float addDamage)
     {
         damage += addDamage;
@@ -64,4 +71,25 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+=======
+    private void MeleeAttack()
+    {
+        anim.SetTrigger("attack");
+        cooldownTimer = 0;
+        
+        Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(firePoint.position, attackRange, enemyLayer);
+        
+        foreach(Collider2D enemy in hitEnemy)
+        {
+            enemy.GetComponent<Health>().TakeDamage(1);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(firePoint == null) return;
+        Gizmos.DrawWireSphere(firePoint.position, attackRange);
+    }
+
+>>>>>>> Stashed changes
 }
