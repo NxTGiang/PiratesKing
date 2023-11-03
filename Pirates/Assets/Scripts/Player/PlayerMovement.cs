@@ -29,17 +29,18 @@ public class PlayerMovement : MonoBehaviour
     [Header("Item")]
     [SerializeField] private float cooldownTimer1;
     [SerializeField] private float cooldownTimer2;
-    private bool canUseItem1 = true;
-    private bool canUseItem2 = true;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
     private Health health;
     private float speedBoostTimer;
+    private float healthTimer;
+    private float critBoostTimer;
     private bool isSpeedBoostActive = false;
     private ItemCollector itemCollector;
     private PlayerAttack playerAttack;
-
+    private bool healthAble = false;
+    private bool critBoostAble = false;
 
 
 
@@ -84,10 +85,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
-        if (Input.GetKeyDown(KeyCode.Alpha1) && canUseItem1 && itemCollector.getNumOfHealth()>0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !healthAble && itemCollector.getNumOfHealth()>0)
         {
             itemCollector.showNumberOfItem(1);
             UseHealthItem();
+            healthAble = true;
+            healthTimer = 5f;
+        }
+        if (healthAble)
+        {
+            healthTimer -= Time.deltaTime;
+            if (healthTimer <= 0)
+            {
+                healthAble = false;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && !isSpeedBoostActive && itemCollector.getNumOfSpeed() > 0)
         {
@@ -105,20 +116,23 @@ public class PlayerMovement : MonoBehaviour
                 isSpeedBoostActive = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && canUseItem2 && itemCollector.getNumOfStrenth() > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !critBoostAble && itemCollector.getNumOfStrenth() > 0)
         {
             itemCollector.showNumberOfItem(3);
-            playerAttack.addDamage(cooldownTimer2, 5);
-            canUseItem2 = false;
-            if (!canUseItem2)
+            playerAttack.addDamage(5);
+            Debug.Log("asdad");
+            critBoostAble = true;
+            critBoostTimer = cooldownTimer2;
+        }
+        if (critBoostAble)
+        {
+            critBoostTimer -= Time.deltaTime;
+            if (critBoostTimer <= 0)
             {
-                cooldownTimer2 -= Time.deltaTime;
-                if (cooldownTimer2 <= 0)
-                {
-                    canUseItem2 = true;
-                }
+                Debug.Log("asdad2");
+                playerAttack.minusDamage(5);
+                critBoostAble = false;
             }
-
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
@@ -179,16 +193,6 @@ public class PlayerMovement : MonoBehaviour
     public void UseHealthItem()
     {
         health.AddHealth(5f); 
-        canUseItem1 = false;
-        if (!canUseItem1)
-        {
-            cooldownTimer1 -= Time.deltaTime;
-            if (cooldownTimer1 <= 0)
-            {
-                canUseItem1 = true;
-            }
-        }
-
     }
 
 

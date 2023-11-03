@@ -42,7 +42,7 @@ public class ProjectTile : MonoBehaviour
 
             collision.GetComponent<EnemyHealth>().TakeDamage(damge);
 
-            collision.GetComponent<Health>().TakeDamage(1);
+            //collision.GetComponent<Health>().TakeDamage(1);
 
     }
 

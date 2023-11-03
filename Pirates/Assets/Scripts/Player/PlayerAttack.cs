@@ -61,14 +61,13 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-    public void addDamage(float duration, float addDamage)
+    public void addDamage( float addDamage)
     {
         damage += addDamage;
-        duration -= Time.deltaTime;
-        if (duration <= 0)
-        {
-            damage -= addDamage;
-        }
+    }
+    public void minusDamage(float minusDamage)
+    {
+        damage -= minusDamage;
     }
 
 
