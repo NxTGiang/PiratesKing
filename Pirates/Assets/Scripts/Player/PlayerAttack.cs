@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && cooldownTimer > attackCooldown /*&& playerMovement.canAttack()*/)
             Attack();
 
-        if (Input.GetMouseButtonDown(0) && cooldownTimer > attackCooldown)
+        if (Input.GetMouseButtonDown(0))
             MeleeAttack();
 
         cooldownTimer += Time.deltaTime;
@@ -47,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
         cooldownTimer = 0;
         
         swords[FindSword()].transform.position = firePoint.position;
-        swords[FindSword()].GetComponent<ProjectTile>().SetDirection(Mathf.Sign(transform.localScale.x), damage);
+        swords[FindSword()].GetComponent<ProjectTile>().SetDirection(Mathf.Sign(transform.localScale.x), damage*2);
     }
 
     private int FindSword()
@@ -80,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
         
         foreach(Collider2D enemy in hitEnemy)
         {
-            enemy.GetComponent<Health>().TakeDamage(1);
+            enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }
 
