@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             itemCollector.showNumberOfItem(1);
             UseHealthItem();
             healthAble = true;
-            healthTimer = 5f;
+            healthTimer = 200f;
         }
         if (healthAble)
         {
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && !critBoostAble && itemCollector.getNumOfStrenth() > 0)
         {
             itemCollector.showNumberOfItem(3);
-            playerAttack.addDamage(5);
+            playerAttack.addDamage(75);
             Debug.Log("asdad");
             critBoostAble = true;
             critBoostTimer = cooldownTimer2;
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             if (critBoostTimer <= 0)
             {
                 Debug.Log("asdad2");
-                playerAttack.minusDamage(5);
+                playerAttack.minusDamage(75);
                 critBoostAble = false;
             }
         }
