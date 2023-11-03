@@ -87,10 +87,10 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         if (Input.GetKeyDown(KeyCode.Alpha1) && !healthAble && itemCollector.getNumOfHealth()>0)
         {
-            itemCollector.showNumberOfItem(1);
+            itemCollector.showNumberOfItem(1, healthTimer);
             UseHealthItem();
             healthAble = true;
-            healthTimer = 200f;
+            healthTimer = 5f;
         }
         if (healthAble)
         {
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && !isSpeedBoostActive && itemCollector.getNumOfSpeed() > 0)
         {
-            itemCollector.showNumberOfItem(2);
+            itemCollector.showNumberOfItem(2, speedBoostTimer);
             moveSpeed += speedBoosts;
             isSpeedBoostActive = true;
             speedBoostTimer = speedBoostDuration;
@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && !critBoostAble && itemCollector.getNumOfStrenth() > 0)
         {
-            itemCollector.showNumberOfItem(3);
+            itemCollector.showNumberOfItem(3, critBoostTimer);
             playerAttack.addDamage(75);
             Debug.Log("asdad");
             critBoostAble = true;
@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void UseHealthItem()
     {
-        health.AddHealth(5f); 
+        health.AddHealth(200f); 
     }
 
 

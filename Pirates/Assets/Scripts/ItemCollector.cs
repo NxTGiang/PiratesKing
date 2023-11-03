@@ -53,23 +53,33 @@ public class ItemCollector : MonoBehaviour
             speedText.text = countSpeed.ToString();
         }
     }
-    public void showNumberOfItem(int itemID)
+    public void showNumberOfItem(int itemID, float time)
     {
         if (itemID == 1)
         {
             countHealth--;
             healthText.text = countHealth.ToString();
+            StartCoroutine(ChangeTextColor(healthText, Color.red, time));
         }
         if (itemID == 2)
         {
             countSpeed--;
             speedText.text = countSpeed.ToString();
+            StartCoroutine(ChangeTextColor(speedText, Color.red, time));
         }
         if (itemID == 3)
         {
             countStrenth--;
             strengthText.text = countStrenth.ToString();
+            StartCoroutine(ChangeTextColor(strengthText, Color.red, time));
         }
+    }
+
+    IEnumerator ChangeTextColor(Text text, Color color, float time)
+    {
+        text.color = color;
+        yield return new WaitForSeconds(time);
+        text.color = Color.white;
     }
     public int getNumOfHealth() { return countHealth; }
     public int getNumOfSpeed() { return countSpeed; }

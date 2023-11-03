@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
+    [SerializeField] private float attackMeleeCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] swords;
     [SerializeField] private float damage;
     private Animator anim;
     private PlayerMovement playerMovement;
     private float cooldownTimer = Mathf.Infinity;
+    private float cooldownMeleeTimer = Mathf.Infinity;
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private float attackRange = 0.5f;
@@ -35,10 +37,11 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && cooldownTimer > attackCooldown /*&& playerMovement.canAttack()*/)
             Attack();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && cooldownMeleeTimer > attackMeleeCooldown)
             MeleeAttack();
 
         cooldownTimer += Time.deltaTime;
+        cooldownMeleeTimer += Time.deltaTime;
     }
 
     private void Attack()
@@ -74,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
     private void MeleeAttack()
     {
         anim.SetTrigger("attack");
-        cooldownTimer = 0;
+        cooldownMeleeTimer = 0;
         
         Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(firePoint.position, attackRange, enemyLayer);
         
