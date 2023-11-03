@@ -113,4 +113,9 @@ public class EnemyHealth : MonoBehaviour
             prefab.GetComponentInChildren<TextMesh>().text = text;
         }
     }
+
+    private void Deactive()
+    {
+        gameObject.SetActive(false);
+    }
 }
