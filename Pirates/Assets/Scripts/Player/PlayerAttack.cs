@@ -60,7 +60,7 @@ public class PlayerAttack : MonoBehaviour
         return 0;
     }
 
-<<<<<<< Updated upstream
+
     public void addDamage(float duration, float addDamage)
     {
         damage += addDamage;
@@ -71,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-=======
+
     private void MeleeAttack()
     {
         anim.SetTrigger("attack");
@@ -91,5 +91,5 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(firePoint.position, attackRange);
     }
 
->>>>>>> Stashed changes
+
 }
