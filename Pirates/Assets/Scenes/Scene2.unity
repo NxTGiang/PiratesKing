@@ -35623,7 +35623,8 @@ PrefabInstance:
       propertyPath: strengthText
       value: 
       objectReference: {fileID: 305265934}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1460749772124480995, guid: 5166ccee507f4f74cb905a18c1a52ed9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
